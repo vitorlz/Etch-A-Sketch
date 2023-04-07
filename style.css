@@ -1,0 +1,29 @@
+body{
+    display: flex;
+}
+
+.grid{
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    border: solid black;
+    border-width: 0.5px;
+    margin: 0;
+    padding: 0;
+}
+
+.gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 640px;
+    height: 640px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.buttons {
+    width: 400px;
+    height: 400px;
+}
+    
