@@ -11,14 +11,18 @@
 <body>
     <div class="buttons">
         <div class="colors">
-            <button class="red">Red</button>
-            <button class="green">Green</button>
-            <button class="blue">Blue</button>
-            <button class="white">Clear</button>
+            <input type="color" class="color"></input>
         </div>
         <button class="gridSize">Change grid size</button>
+        <button class="clear">Clear</button>
+        <div class="gridSlide">
+            <div class="slide">
+                <div class="gridCurrent"></div>
+                <input type="range" min="8" max="100" class="gridInput"></input>
+            </div>
+        </div>
+        
     </div>
-    
     <div class="gridContainer"></div>
 </body>
 </html>

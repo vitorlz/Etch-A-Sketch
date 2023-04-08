@@ -6,7 +6,6 @@ body{
     box-sizing: border-box;
     height: 40px;
     width: 40px;
-    border: solid black;
     border-width: 0.5px;
     margin: 0;
     padding: 0;
@@ -20,10 +19,28 @@ body{
     margin: 0;
     padding: 0;
     flex-shrink: 0;
+    border: solid red;
+    border-radius: 12px;
 }
 
 .buttons {
     width: 400px;
     height: 400px;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridInput{
+    width: 200px;
+}
+
+.gridSlide {
+    display: flex;
+    justify-content: flex-start;
 }
     
