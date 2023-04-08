@@ -5,6 +5,7 @@ const clear = document.querySelector('.clear');
 const colorInput = document.querySelector('input');
 const gridSlide = document.querySelector('.gridInput');
 const gridCurrent = document.querySelector('.gridCurrent');
+const rainbow = document.querySelector('.rainbow');
 grid.classList.add('grid');
 let color = 'white';
 let lastColor = 'white';
@@ -16,6 +17,22 @@ let mouseover = false;
 let last = false;
 gridSlide.value = 16;
 gridCurrent.textContent = `Grid size: 16 x 16`;
+
+let rC1;
+let rC2;
+let rC3;
+let randomColor;
+
+function getRandomColor(){
+    rC1 = Math.floor(Math.random() * 255);
+    rC2 = Math.floor(Math.random() * 255);
+    rC3 = Math.floor(Math.random() * 255);
+    return `rgb(${rC1}, ${rC2}, ${rC3})`;
+}
+
+
+
+
 
 clear.addEventListener('click', (e) => {
     gridBlocks.forEach((block) => {
@@ -65,27 +82,28 @@ function draw(){
             mouseDown = false;
             last = true;
         })
-
-        block.addEventListener('click', (e) => {
-            block.style.backgroundColor = `${colorInput.value}`;
-            click = true;
-        })
         
         block.addEventListener('mouseover', (e) => {
-            if(mouseDown){
+            if(mouseDown && !rainbow.checked){
                 block.style.backgroundColor = `${colorInput.value}`;
+            }
+            else if(mouseDown && rainbow.checked){
+                block.style.backgroundColor = getRandomColor();
             }
         })
         block.addEventListener('mouseenter', (e) => {
-            click = false;
             last = false;
-            if(!mouseDown){
+            if(!mouseDown && !rainbow.checked){
                 lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
                 block.style.backgroundColor = `${colorInput.value}`;
             }
+            else if(!mouseDown && rainbow.checked){
+                lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
+                block.style.backgroundColor = getRandomColor();
+            }
         })
         block.addEventListener('mouseleave', (e) => {
-            if(!mouseDown && !click && !last){   
+            if(!mouseDown && !last){   
                 block.style.backgroundColor = `${lastColor}`;
             }
             
@@ -95,7 +113,7 @@ function draw(){
 
 
 
-/// Add color wheel, add sliding thing to set the grid, add rainbow mode, add a way to clear the board.
+/// Add shading, re-add eraser.
 
 
 
