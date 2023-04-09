@@ -7,6 +7,7 @@ const gridSlide = document.querySelector('.gridInput');
 const gridCurrent = document.querySelector('.gridCurrent');
 const rainbow = document.querySelector('.rainbow');
 grid.classList.add('grid');
+const shading = document.querySelector('.shading');
 let color = 'white';
 let lastColor = 'white';
 let gridSizeInput = 16;
@@ -27,12 +28,39 @@ function getRandomColor(){
     rC1 = Math.floor(Math.random() * 255);
     rC2 = Math.floor(Math.random() * 255);
     rC3 = Math.floor(Math.random() * 255);
-    return `rgb(${rC1}, ${rC2}, ${rC3})`;
+    randomColor = `rgb(${rC1}, ${rC2}, ${rC3})`;
+    return randomColor;
 }
 
+function shade(){
+    let lastColorArray = lastColor.split(',');
+    let firstRGBValue = lastColorArray[0].split('').filter(n => {
+        return n === '0' || Number(n);
+    }).join('');
+    let lastRGBvalue = lastColorArray[lastColorArray.length - 1].replace(')', '');
+    let shadedRBGValues = [firstRGBValue * 0.9, lastColorArray[1] * 0.9,  lastRGBvalue * 0.9]
+    let shadedColor = `rgb(${shadedRBGValues.join(',')})`;
+    return shadedColor;
 
+}
 
+rainbow.addEventListener('click', e => {
+    if(rainbow.checked){
+        shading.checked = false;
+    }
+    else if(shading.checked){
+        rainbow.checked === false;
+    }
+})
 
+shading.addEventListener('click', e => {
+    if(shading.checked){
+        rainbow.checked = false;
+    }
+    else if(rainbow.checked){
+        shading.checked = false;
+    }
+})
 
 clear.addEventListener('click', (e) => {
     gridBlocks.forEach((block) => {
@@ -60,7 +88,7 @@ gridSlide.addEventListener('change', (e) => {
         gridContainer.removeChild(gridContainer.lastChild)
     }
     while (gridContainer.childElementCount < gridSq){
-    gridContainer.appendChild(grid.cloneNode(true));
+        gridContainer.appendChild(grid.cloneNode(true));
     }
     
     gridBlocks = document.querySelectorAll('.grid');
@@ -84,26 +112,28 @@ function draw(){
         })
         
         block.addEventListener('mouseover', (e) => {
-            if(mouseDown && !rainbow.checked){
+            if(mouseDown && !rainbow.checked && !shading.checked){
                 block.style.backgroundColor = `${colorInput.value}`;
             }
-            else if(mouseDown && rainbow.checked){
+            else if(mouseDown && rainbow.checked && !shading.checked){
                 block.style.backgroundColor = getRandomColor();
             }
         })
         block.addEventListener('mouseenter', (e) => {
             last = false;
-            if(!mouseDown && !rainbow.checked){
-                lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
+            lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
+            if(!mouseDown && !rainbow.checked && !shading.checked){
                 block.style.backgroundColor = `${colorInput.value}`;
             }
-            else if(!mouseDown && rainbow.checked){
-                lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
+            else if(!mouseDown && rainbow.checked && !shading.checked){
                 block.style.backgroundColor = getRandomColor();
+            }
+            else if(mouseDown && shading.checked){
+                block.style.backgroundColor = shade();
             }
         })
         block.addEventListener('mouseleave', (e) => {
-            if(!mouseDown && !last){   
+            if(!mouseDown && !last && !shading.checked){   
                 block.style.backgroundColor = `${lastColor}`;
             }
             
