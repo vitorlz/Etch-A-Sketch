@@ -48,8 +48,9 @@ function shade(){
 rainbow.addEventListener('click', e => {
     if(rainbow.checked){
         shading.checked = false;
+        eraser.checked = false;
     }
-    else if(shading.checked){
+    else if(shading.checked || eraser.checked){
         rainbow.checked === false;
     }
 })
@@ -57,9 +58,20 @@ rainbow.addEventListener('click', e => {
 shading.addEventListener('click', e => {
     if(shading.checked){
         rainbow.checked = false;
+        eraser.checked = false;
     }
-    else if(rainbow.checked){
+    else if(rainbow.checked || eraser.checked){
         shading.checked = false;
+    }
+})
+
+eraser.addEventListener('click', e => {
+    if(eraser.checked){
+        rainbow.checked = false;
+        shading.checked = false;
+    }
+    else if(rainbow.checked || shading.checked){
+        eraser.checked = false;
     }
 })
 
@@ -102,6 +114,7 @@ function draw(){
         
         block.style.height = `${640/gridSlide.value}px`;
         block.style.width = `${640/gridSlide.value}px`
+        
         
         block.addEventListener('mousedown',(e) => {
             mouseDown = true; 
