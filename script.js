@@ -6,6 +6,7 @@ const colorInput = document.querySelector('input');
 const gridSlide = document.querySelector('.gridInput');
 const gridCurrent = document.querySelector('.gridCurrent');
 const rainbow = document.querySelector('.rainbow');
+const eraser = document.querySelector('.eraser');
 grid.classList.add('grid');
 const shading = document.querySelector('.shading');
 let color = 'white';
@@ -104,7 +105,13 @@ function draw(){
         
         block.addEventListener('mousedown',(e) => {
             mouseDown = true; 
-
+            if(mouseDown && shading.checked && !eraser.checked){
+                block.style.backgroundColor = shade();
+            }
+            else if(mouseDown && !rainbow.checked && !shading.checked && eraser.checked){
+                block.style.backgroundColor = 'rgb(255,255,255)';
+            }
+            
         })
         block.addEventListener('mouseup', (e) => {
             mouseDown = false;
@@ -112,24 +119,30 @@ function draw(){
         })
         
         block.addEventListener('mouseover', (e) => {
-            if(mouseDown && !rainbow.checked && !shading.checked){
+            if(mouseDown && !rainbow.checked && !shading.checked && !eraser.checked){
                 block.style.backgroundColor = `${colorInput.value}`;
             }
-            else if(mouseDown && rainbow.checked && !shading.checked){
+            else if(mouseDown && rainbow.checked && !shading.checked && !eraser.checked){
                 block.style.backgroundColor = getRandomColor();
+            }
+            else if(mouseDown && !rainbow.checked && !shading.checked && eraser.checked){
+                block.style.backgroundColor = 'rgb(255,255,255)';
             }
         })
         block.addEventListener('mouseenter', (e) => {
             last = false;
             lastColor = window.getComputedStyle(e.target).getPropertyValue('background-color');
-            if(!mouseDown && !rainbow.checked && !shading.checked){
+            if(!mouseDown && !rainbow.checked && !shading.checked && !eraser.checked){
                 block.style.backgroundColor = `${colorInput.value}`;
             }
-            else if(!mouseDown && rainbow.checked && !shading.checked){
+            else if(!mouseDown && rainbow.checked && !shading.checked && !eraser.checked){
                 block.style.backgroundColor = getRandomColor();
             }
-            else if(mouseDown && shading.checked){
+            else if(mouseDown && shading.checked && !eraser.checked){
                 block.style.backgroundColor = shade();
+            }
+            else if(mouseDown && !rainbow.checked && !shading.checked && eraser.checked){
+                block.style.backgroundColor = 'rgb(255,255,255)';
             }
         })
         block.addEventListener('mouseleave', (e) => {
