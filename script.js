@@ -169,7 +169,7 @@ function draw(){
 
 
 
-/// Add shading, re-add eraser.
+
 
 
 

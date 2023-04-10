@@ -1,5 +1,17 @@
 body{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Mali', 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #B9FFF8;
+    font-weight: 600;
+
 }
 
 .grid{
@@ -20,22 +32,32 @@ body{
     margin: 0;
     padding: 0;
     flex-shrink: 0;
-    border: solid red;
-    border-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .buttons {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 400px;
-    align-items: flex-start;
+    gap: 30px;
+    width: 230px;
+    height: 650px;
+    
+    background-color: gray;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 0;
+    background-color: #FF9551;
 }
 
 .rb,
 .sd,
 .er {
     display: flex;
+    gap: 5px;
 }
 
 .slide {
@@ -46,11 +68,77 @@ body{
 }
 
 .gridInput{
-    width: 200px;
+    margin-top: 5px;
+    width: 180px;
 }
+
 
 .gridSlide {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
+
+.colors {
+    display: flex;
+    justify-content: center;
+}
+
+.color{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 100px;
+    width: 100px;
+    border: none;
+    border-color: transparent;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+}
+
+.color::-webkit-color-swatch {
+    display: flex;
+    border: none;
+    border-radius: 50%;
+}
+
+.color::-webkit-color-swatch-wrapper {
+    padding: 0;
     
+}
+
+.main {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    border: #E14D2A solid;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 640px;
+}
+
+.header {
+    font-family: 'Titan One';
+    font-size: 64px;
+    margin: 0;
+    padding: 0;
+    color: #5F9DF7;
+    text-shadow: 3px 3px #002B5B;
+    margin-bottom: 10px;
+}
+
+.clear {
+    border: none;
+    border-radius: 12px;
+    height: 32px;
+    background-color: #5F9DF7;
+    box-shadow: 3px 3px #002B5B;
+    font-family: 'Mali', 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.clear:active{
+    background-color: #91b3e6;
+}
+
